@@ -4,8 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Rebecca Chiang's personal website, research interests, and projects.">
-    <title>Rebecca Chiang | Personal Website</title>
+
+    <meta name="description"
+          content="Hui-Jou Chiang (Rebecca) — Computer science student interested in neural engineering, brain-computer interfaces, and biomedical AI.">
+
+    <meta name="author" content="Hui-Jou Chiang (Rebecca)">
+
+    <title>Hui-Jou Chiang (Rebecca) | Personal Website</title>
 
     <style>
         :root {
@@ -106,16 +111,17 @@
 
         h1 {
             margin: 18px 0 12px;
-            font-size: clamp(42px, 7vw, 68px);
-            line-height: 1.12;
-            letter-spacing: -2.8px;
+            font-size: clamp(36px, 6vw, 64px);
+            line-height: 1.15;
+            letter-spacing: -2px;
             font-weight: 700;
+            overflow-wrap: anywhere;
         }
 
         .hero-subtitle {
             margin: 0;
             color: var(--muted);
-            font-size: clamp(17px, 2.5vw, 21px);
+            font-size: clamp(16px, 2.5vw, 21px);
         }
 
         .hero-description {
@@ -262,7 +268,7 @@
             font-size: 11px;
         }
 
-        /* Timeline */
+        /* Education and experience */
 
         .timeline {
             display: grid;
@@ -303,7 +309,7 @@
             font-size: 14px;
         }
 
-        /* Contact and footer */
+        /* Contact */
 
         .contact-panel {
             padding: 34px;
@@ -323,12 +329,19 @@
         .contact-links {
             display: flex;
             flex-wrap: wrap;
-            gap: 22px;
+            gap: 12px 22px;
             margin-top: 22px;
             color: var(--accent);
             font-size: 14px;
             font-weight: 600;
         }
+
+        .contact-links a:hover {
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+        /* Footer */
 
         footer {
             padding: 26px 0;
@@ -344,11 +357,7 @@
 
         /* Responsive layout */
 
-        @media (max-width: 700px) {
-            .container {
-                width: calc(100% - 36px);
-            }
-
+        @media (max-width: 800px) {
             .nav-inner {
                 align-items: flex-start;
                 flex-direction: column;
@@ -361,7 +370,12 @@
                 width: 100%;
                 flex-wrap: wrap;
                 gap: 8px 18px;
-                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .container {
+                width: calc(100% - 36px);
             }
 
             .hero {
@@ -369,7 +383,7 @@
             }
 
             h1 {
-                letter-spacing: -1.8px;
+                letter-spacing: -1.3px;
             }
 
             section {
@@ -400,7 +414,7 @@
 <body>
     <nav class="navbar">
         <div class="container nav-inner">
-            <a class="logo" href="#home">Rebecca Chiang</a>
+            <a class="logo" href="#home">Hui-Jou Chiang (Rebecca)</a>
 
             <div class="nav-links">
                 <a href="#about">About</a>
@@ -416,7 +430,7 @@
         <header class="hero container" id="home">
             <div class="eyebrow">Personal Website & Research Portfolio</div>
 
-            <h1>Rebecca Chiang</h1>
+            <h1>Hui-Jou Chiang (Rebecca)</h1>
 
             <p class="hero-subtitle">
                 Computer Science · Neural Engineering · Biomedical AI
@@ -528,9 +542,7 @@
                     <div class="timeline-item">
                         <div class="timeline-date">2025 – 2026</div>
                         <div>
-                            <h3 class="timeline-title">
-                                Exchange Student
-                            </h3>
+                            <h3 class="timeline-title">Exchange Student</h3>
                             <div class="timeline-place">
                                 Uppsala University, Sweden
                             </div>
@@ -544,9 +556,7 @@
                     <div class="timeline-item">
                         <div class="timeline-date">2026</div>
                         <div>
-                            <h3 class="timeline-title">
-                                Research Intern
-                            </h3>
+                            <h3 class="timeline-title">Research Intern</h3>
                             <div class="timeline-place">
                                 Academia Sinica
                             </div>
@@ -590,10 +600,27 @@
                     </p>
 
                     <div class="contact-links">
-                        <!-- Replace these placeholder links with your own. -->
-                        <a href="https://github.com/snowflake1111" target="_blank"
-                           rel="noopener noreferrer">GitHub ↗</a>
-                        <a href="rebeccawork1192@gmail.com">Email ↗</a>
+                        <a href="mailto:rebeccawork1192@gmail.com">
+                            Email ↗
+                        </a>
+
+                        <a href="https://github.com/snowflake1111"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            GitHub ↗
+                        </a>
+
+                        <a href="https://www.linkedin.com/in/hui-jou-chiang-942904292/"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            LinkedIn ↗
+                        </a>
+
+                        <a href="https://www.instagram.com/snowflake111192/"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            Instagram ↗
+                        </a>
                     </div>
                 </div>
             </div>
@@ -602,7 +629,7 @@
 
     <footer>
         <div class="container footer-inner">
-            <span>© 2026 Rebecca Chiang</span>
+            <span>© 2026 Hui-Jou Chiang (Rebecca)</span>
             <span>Built with HTML & CSS · Hosted on GitHub Pages</span>
         </div>
     </footer>
