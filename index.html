@@ -4,77 +4,607 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Rebecca Chiang's personal website, research interests, and projects.">
     <title>Rebecca Chiang | Personal Website</title>
+
     <style>
+        :root {
+            --background: #ffffff;
+            --surface: #f4f6f9;
+            --text: #202938;
+            --muted: #687386;
+            --accent: #304d73;
+            --border: #e4e8ee;
+            --max-width: 1060px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            max-width: 850px;
-            margin: 100px auto;
-            padding: 0 24px;
-            line-height: 1.8;
-            color: #222;
-            background: #fff;
-        }
-
-        h1 {
-            font-size: 42px;
-            margin-bottom: 8px;
-        }
-
-        .subtitle {
-            color: #666;
-            font-size: 18px;
-        }
-
-        section {
-            margin-top: 48px;
+            margin: 0;
+            background: var(--background);
+            color: var(--text);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                         Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
         }
 
         a {
-            color: #3157a4;
+            color: inherit;
             text-decoration: none;
         }
 
-        a:hover {
-            text-decoration: underline;
+        a:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 4px;
+        }
+
+        .container {
+            width: min(var(--max-width), calc(100% - 48px));
+            margin: 0 auto;
+        }
+
+        /* Navigation */
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.94);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(12px);
+        }
+
+        .nav-inner {
+            min-height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .logo {
+            font-size: 17px;
+            font-weight: 700;
+            letter-spacing: -0.4px;
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 26px;
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero */
+
+        .hero {
+            padding: 104px 0 92px;
+        }
+
+        .eyebrow {
+            color: var(--accent);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            margin: 18px 0 12px;
+            font-size: clamp(42px, 7vw, 68px);
+            line-height: 1.12;
+            letter-spacing: -2.8px;
+            font-weight: 700;
+        }
+
+        .hero-subtitle {
+            margin: 0;
+            color: var(--muted);
+            font-size: clamp(17px, 2.5vw, 21px);
+        }
+
+        .hero-description {
+            max-width: 650px;
+            margin-top: 24px;
+            color: #505c6d;
+            font-size: 16px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+            padding: 10px 19px;
+            border: 1px solid var(--accent);
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .button-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .button-primary:hover {
+            background: #203955;
+        }
+
+        .button-secondary {
+            color: var(--accent);
+        }
+
+        .button-secondary:hover {
+            background: var(--surface);
+        }
+
+        /* Sections */
+
+        section {
+            padding: 76px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .section-label {
+            margin: 0 0 8px;
+            color: var(--accent);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            margin: 0 0 28px;
+            font-size: clamp(28px, 4vw, 36px);
+            line-height: 1.3;
+            letter-spacing: -1px;
+        }
+
+        .section-description {
+            max-width: 720px;
+            margin-top: -12px;
+            margin-bottom: 30px;
+            color: var(--muted);
+        }
+
+        /* Research interests */
+
+        .interest-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .interest {
+            padding: 9px 14px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            background: var(--surface);
+            color: #39475b;
+            font-size: 13px;
+        }
+
+        /* Project cards */
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .project-card {
+            padding: 26px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: white;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+
+        .project-card:hover {
+            border-color: #aab9cb;
+            transform: translateY(-3px);
+        }
+
+        .project-type {
+            color: var(--accent);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.3px;
+            text-transform: uppercase;
+        }
+
+        h3 {
+            margin: 12px 0 10px;
+            font-size: 19px;
+            line-height: 1.45;
+        }
+
+        .project-card p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-top: 20px;
+        }
+
+        .project-tags span {
+            color: #58667a;
+            font-size: 11px;
+        }
+
+        /* Timeline */
+
+        .timeline {
+            display: grid;
+            gap: 0;
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 155px minmax(0, 1fr);
+            gap: 24px;
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .timeline-item:first-child {
+            padding-top: 0;
+        }
+
+        .timeline-date {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .timeline-title {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        .timeline-place {
+            margin-top: 3px;
+            color: var(--accent);
+            font-size: 13px;
+        }
+
+        .timeline-description {
+            margin: 8px 0 0;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        /* Contact and footer */
+
+        .contact-panel {
+            padding: 34px;
+            border-radius: 10px;
+            background: var(--surface);
+        }
+
+        .contact-panel h2 {
+            margin-bottom: 12px;
+        }
+
+        .contact-panel p {
+            max-width: 600px;
+            color: var(--muted);
+        }
+
+        .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 22px;
+            margin-top: 22px;
+            color: var(--accent);
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        footer {
+            padding: 26px 0;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        /* Responsive layout */
+
+        @media (max-width: 700px) {
+            .container {
+                width: calc(100% - 36px);
+            }
+
+            .nav-inner {
+                align-items: flex-start;
+                flex-direction: column;
+                justify-content: center;
+                gap: 8px;
+                padding: 14px 0;
+            }
+
+            .nav-links {
+                width: 100%;
+                flex-wrap: wrap;
+                gap: 8px 18px;
+                font-size: 12px;
+            }
+
+            .hero {
+                padding: 76px 0 68px;
+            }
+
+            h1 {
+                letter-spacing: -1.8px;
+            }
+
+            section {
+                padding: 58px 0;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-item {
+                grid-template-columns: 1fr;
+                gap: 5px;
+            }
+
+            .contact-panel {
+                padding: 24px;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                gap: 4px;
+            }
         }
     </style>
 </head>
+
 <body>
-    <header>
-        <h1>Rebecca Chiang</h1>
-        <p class="subtitle">
-            Computer Science Student | Researcher
-        </p>
-        <p>
-            Welcome to my personal website.
-            I am interested in brain-computer interfaces,
-            neural signal processing, and AI-driven
-            biomedical applications.
-        </p>
-    </header>
+    <nav class="navbar">
+        <div class="container nav-inner">
+            <a class="logo" href="#home">Rebecca Chiang</a>
 
-    <section>
-        <h2>About Me</h2>
-        <p>
-            I am a computer science student interested in
-            exploring the intersection of artificial
-            intelligence, neuroscience, and healthcare.
-        </p>
-    </section>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#research">Research</a>
+                <a href="#projects">Projects</a>
+                <a href="#experience">Experience</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
 
-    <section>
-        <h2>Research & Projects</h2>
-        <p>EEG Signal Denoising and Downstream Task Performance</p>
-        <p>Biomedical AI and Research Projects</p>
-    </section>
+    <main>
+        <header class="hero container" id="home">
+            <div class="eyebrow">Personal Website & Research Portfolio</div>
 
-    <section>
-        <h2>Contact</h2>
-        <p>
-            <a href="https://github.com/snowflake1111/">GitHub</a>
-            <!-- Replace this link with your GitHub profile URL. -->
-        </p>
-    </section>
+            <h1>Rebecca Chiang</h1>
+
+            <p class="hero-subtitle">
+                Computer Science · Neural Engineering · Biomedical AI
+            </p>
+
+            <p class="hero-description">
+                I am a computer science student interested in the
+                intersection of artificial intelligence, neuroscience,
+                and healthcare. My current interests include neural
+                signal processing, brain-computer interfaces, and
+                machine learning for biomedical applications.
+            </p>
+
+            <div class="hero-actions">
+                <a class="button button-primary" href="#projects">
+                    Explore My Work
+                </a>
+                <a class="button button-secondary" href="#contact">
+                    Get in Touch
+                </a>
+            </div>
+        </header>
+
+        <section id="about">
+            <div class="container">
+                <p class="section-label">Introduction</p>
+                <h2>About Me</h2>
+
+                <p class="section-description">
+                    I am a computer science student building experience
+                    across machine learning, signal processing, and
+                    biomedical research. I enjoy investigating how
+                    computational methods can help us better understand
+                    complex biological signals and support real-world
+                    applications.
+                </p>
+            </div>
+        </section>
+
+        <section id="research">
+            <div class="container">
+                <p class="section-label">What I Explore</p>
+                <h2>Research Interests</h2>
+
+                <div class="interest-list">
+                    <span class="interest">Brain-Computer Interfaces</span>
+                    <span class="interest">EEG Signal Processing</span>
+                    <span class="interest">Neural Decoding</span>
+                    <span class="interest">Machine Learning</span>
+                    <span class="interest">Biomedical AI</span>
+                    <span class="interest">Human-AI Interaction</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="container">
+                <p class="section-label">Selected Work</p>
+                <h2>Projects</h2>
+
+                <p class="section-description">
+                    A selection of research and engineering projects
+                    exploring machine learning, neural signals, and
+                    biomedical data.
+                </p>
+
+                <div class="project-grid">
+                    <article class="project-card">
+                        <div class="project-type">Research Project</div>
+                        <h3>EEG Denoising and Downstream Task Performance</h3>
+                        <p>
+                            Investigating how different EEG denoising
+                            methods affect downstream machine learning
+                            performance, including attention-state
+                            classification.
+                        </p>
+                        <div class="project-tags">
+                            <span>EEG</span>
+                            <span>Signal Processing</span>
+                            <span>Machine Learning</span>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-type">Research Engineering</div>
+                        <h3>Microbiome Analysis with Hermes</h3>
+                        <p>
+                            Working on a natural-language-driven
+                            microbiome analysis workflow, connecting
+                            analytical tools, reporting, and interactive
+                            user interfaces.
+                        </p>
+                        <div class="project-tags">
+                            <span>Bioinformatics</span>
+                            <span>Python</span>
+                            <span>Workflow Engineering</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience">
+            <div class="container">
+                <p class="section-label">Background</p>
+                <h2>Education & Experience</h2>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">2025 – 2026</div>
+                        <div>
+                            <h3 class="timeline-title">
+                                Exchange Student
+                            </h3>
+                            <div class="timeline-place">
+                                Uppsala University, Sweden
+                            </div>
+                            <p class="timeline-description">
+                                Studied computer science and broadened
+                                my international academic experience.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">2026</div>
+                        <div>
+                            <h3 class="timeline-title">
+                                Research Intern
+                            </h3>
+                            <div class="timeline-place">
+                                Academia Sinica
+                            </div>
+                            <p class="timeline-description">
+                                Worked on microbiome analysis workflows
+                                and research software development.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">Undergraduate</div>
+                        <div>
+                            <h3 class="timeline-title">
+                                Computer Science and Information Engineering
+                            </h3>
+                            <div class="timeline-place">
+                                National Taiwan Normal University
+                            </div>
+                            <p class="timeline-description">
+                                Building a foundation in computer science
+                                while exploring machine learning and
+                                biomedical research.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <div class="contact-panel">
+                    <p class="section-label">Contact</p>
+                    <h2>Let's Connect</h2>
+
+                    <p>
+                        I am always interested in research, collaboration,
+                        and opportunities at the intersection of
+                        computing and healthcare.
+                    </p>
+
+                    <div class="contact-links">
+                        <!-- Replace these placeholder links with your own. -->
+                        <a href="https://github.com/snowflake1111" target="_blank"
+                           rel="noopener noreferrer">GitHub ↗</a>
+                        <a href="rebeccawork1192@gmail.com">Email ↗</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-inner">
+            <span>© 2026 Rebecca Chiang</span>
+            <span>Built with HTML & CSS · Hosted on GitHub Pages</span>
+        </div>
+    </footer>
 </body>
 </html>
