@@ -306,76 +306,97 @@ p {
     gap: 0;
 }
 
-/* Draw one continuous line behind all dots */
+/* One continuous vertical line */
 .awards-timeline::before {
     content: "";
     position: absolute;
-    display: block;
     left: 6px;
     top: 7px;
     bottom: 7px;
     width: 2px;
     background-color: #cbd5e1;
-    z-index: 0;
-    pointer-events: none;
 }
 
-/* Consistent layout for every award/activity */
-.awards-timeline-item {
+/* Each award/activity */
+.awards-item {
     position: relative;
     display: grid;
     grid-template-columns: 135px minmax(0, 1fr);
     gap: 22px;
     padding: 22px 0;
-    border-bottom: none;
 }
 
-/* First item starts at the top of the timeline */
-.awards-timeline-item:first-child {
-    padding-top: 0;
-}
-
-/* Dots align with the continuous line */
-.awards-timeline-item::before {
+/* Timeline dots */
+.awards-item::before {
     content: "";
     position: absolute;
-    display: block;
     left: -30px;
     top: 29px;
     width: 14px;
     height: 14px;
+    box-sizing: border-box;
     border: 3px solid #304d73;
     border-radius: 50%;
     background-color: #ffffff;
     z-index: 1;
-    pointer-events: none;
 }
 
-.awards-timeline-item:first-child::before {
+.awards-item:first-child {
+    padding-top: 0;
+}
+
+.awards-item:first-child::before {
     top: 5px;
 }
 
-/* Awards content */
-.awards-timeline-item .timeline-date {
+/* Date */
+.awards-date {
     color: var(--muted);
     font-size: 13px;
 }
 
-.awards-timeline-item .timeline-title {
+/* Award content */
+.awards-content h3 {
     margin: 0;
     font-size: 16px;
 }
 
-.awards-timeline-item .timeline-place {
+.awards-place {
     margin-top: 4px;
     color: var(--accent);
     font-size: 13px;
 }
 
-.awards-timeline-item .timeline-description {
+.awards-content p {
     margin: 8px 0 0;
     color: var(--muted);
     font-size: 14px;
+}
+
+/* Awards timeline on mobile */
+@media (max-width: 700px) {
+    .awards-timeline {
+        padding-left: 26px;
+    }
+
+    .awards-timeline::before {
+        left: 6px;
+    }
+
+    .awards-item {
+        grid-template-columns: 1fr;
+        gap: 5px;
+        padding: 20px 0;
+    }
+
+    .awards-item::before {
+        left: -26px;
+        top: 25px;
+    }
+
+    .awards-item:first-child::before {
+        top: 5px;
+    }
 }
 
 /* Contact */
